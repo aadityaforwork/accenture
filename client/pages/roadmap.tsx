@@ -1,127 +1,71 @@
-// pages/roadmap.tsx
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-import { useState } from 'react';
-import axios from 'axios';
+interface RoadmapStep {
+  step: string
+  topic: string
+  related_content: string
+}
 
-type RoadmapStep = {
-  step: string;
-  topic: string;
-  related_content: string;
-};
+const Roadmap: React.FC = () => {
+  const router = useRouter()
+  const { roadmap_id } = router.query
+  const [roadmap, setRoadmap] = useState<RoadmapStep[]>([])
+  const [loading, setLoading] = useState(true)
 
-const RoadmapPage: React.FC = () => {
-  const [problem, setProblem] = useState('');
-  const [interests, setInterests] = useState('');
-  const [roadmapSteps, setRoadmapSteps] = useState<RoadmapStep[]>([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
+  useEffect(() => {
+    if (roadmap_id) {
+      const fetchRoadmap = async () => {
+        try {
+          const response = await fetch(`/api/get-roadmap?roadmap_id=${roadmap_id}`)
+          const data = await response.json()
 
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post('/api/roadmap', { problem, interests });
-      const cleanedData = response.data;
-      setRoadmapSteps(cleanedData);
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Error generating roadmap:', error);
-    }
-  };
-
-  const toggleStepCompletion = (index: number) => {
-    setCompletedSteps(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
+          if (response.ok) {
+            setRoadmap(data.steps)
+          } else {
+            console.error('Failed to fetch roadmap:', data)
+          }
+        } catch (error) {
+          console.error('Error fetching roadmap:', error)
+        } finally {
+          setLoading(false)
+        }
       }
-      return newSet;
-    });
-  };
+
+      fetchRoadmap()
+    }
+  }, [roadmap_id])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p>Loading your roadmap...</p>
+      </div>
+    )
+  }
+
+  if (!roadmap.length) {
+    return (
+      <div className="max-w-3xl mx-auto p-4">
+        <h1 className="text-2xl font-bold mb-4">No roadmap found.</h1>
+        <p>Please try submitting the quiz again.</p>
+      </div>
+    )
+  }
 
   return (
-    <div className="container">
-      {!isSubmitted ? (
-        <div className="quiz">
-          <h1>Generate Your Roadmap</h1>
-          <label>
-            Problem:
-            <input
-              type="text"
-              value={problem}
-              onChange={e => setProblem(e.target.value)}
-            />
-          </label>
-          <label>
-            Interests:
-            <input
-              type="text"
-              value={interests}
-              onChange={e => setInterests(e.target.value)}
-            />
-          </label>
-          <button onClick={handleSubmit}>Submit</button>
-        </div>
-      ) : (
-        <div className="roadmap">
-          <h1>Your Roadmap</h1>
-          <ul>
-            {roadmapSteps.map((step, index) => (
-              <li
-                key={index}
-                className={`step ${completedSteps.has(index) ? 'completed' : ''}`}
-                onClick={() => toggleStepCompletion(index)}
-              >
-                <div className="step-header">
-                  <span>{step.step}</span>: {step.topic}
-                </div>
-                <div className="step-content">{step.related_content}</div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      <style jsx>{`
-        .container {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        .quiz, .roadmap {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .quiz label {
-          margin-bottom: 10px;
-        }
-        .quiz input {
-          margin-left: 10px;
-        }
-        .roadmap ul {
-          list-style-type: none;
-          padding: 0;
-        }
-        .roadmap li {
-          border: 1px solid #ccc;
-          margin-bottom: 10px;
-          padding: 10px;
-          cursor: pointer;
-        }
-        .roadmap .step-content {
-          display: none;
-          margin-top: 10px;
-        }
-        .roadmap li.completed {
-          background-color: #d4f4dd;
-        }
-        .roadmap li:hover .step-content {
-          display: block;
-        }
-      `}</style>
+    <div className="max-w-3xl mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6">Your Personalized 10-Step Roadmap</h1>
+      <ol className="space-y-4 list-decimal list-inside">
+        {roadmap.map((step, index) => (
+          <li key={index} className="p-4 border border-gray-300 rounded-md">
+            <h2 className="text-xl font-semibold">{`Step ${step.step}: ${step.topic}`}</h2>
+            <p className="mt-2">{step.related_content}</p>
+          </li>
+        ))}
+      </ol>
     </div>
-  );
-};
+  )
+}
 
-export default RoadmapPage;
+export default Roadmap

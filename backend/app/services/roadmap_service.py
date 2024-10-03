@@ -32,12 +32,18 @@ def generate_roadmap(problem, interests):
           User's Problem Input : \\\{problem}\\n\n          
           User's Interests : \\\{interests}\\n\\n\n          \n          
           Give 10 step program to tackle his problem and also inculcate his/her interests. \n          
-          MAKE IT SO THAT YOU ARE ASSIGNING HIM TASKS TO PERFORM , NOT SOMETHING JUST MOTIVATIONAL\\n\\n\\n\n         
-         make it similar to this:\\n\n          
-         {{\\n\\\n            
-         \"step: 1,\\n\\\n            
-         \"topic: \\\"Go for a run everyday\\\"\\n\\\n            
-         \"related_content\\\" : add articles from web here\\n}}
+          MAKE IT SO THAT YOU ARE ASSIGNING HIM TASKS TO PERFORM , NOT SOMETHING JUST MOTIVATIONAL\\n\\n\\n\n   
+          
+                
+         Return the response in the following JSON format:
+         [
+        {{
+            "step": "1",
+            "topic": "Go for a run every day",
+            "related_content": "Add articles from the web here"
+        }},
+        ...
+    ]
          """,
                 ],
             },

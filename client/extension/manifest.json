@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Your Extension Name",
+    "version": "1.0",
+    "description": "Description of your extension.",
+    "permissions": ["activeTab"],
+    "content_scripts": [
+      {
+        "matches": ["https://accenture-phi.vercel.app/*"], 
+        "js": ["content.js"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

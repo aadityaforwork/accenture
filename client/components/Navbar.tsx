@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
       <Link href="/fitbit" legacyBehavior>
       <button className=" text-green-600 text-2xl">Connect</button>
       </Link>
-      <Link href="/healthcentre" legacyBehavior>
+      <Link href="/healthcentre">
       <button className=" text-green-600 text-2xl">Health Centre Login</button>
       </Link>
       <div className="flex items-center justify-center gap-2 text-sm text-green-600 text-bold">

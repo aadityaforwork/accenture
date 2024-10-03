@@ -5,7 +5,7 @@ import React from 'react'
 const HealthCentre = () => {
     return (
         <>
-        <Navbar/>
+        
         <Streamlit2/>
         </>
     )

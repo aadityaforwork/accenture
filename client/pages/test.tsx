@@ -33,7 +33,7 @@ const Home: NextPage = () => {
         <div className="flex items-center justify-between w-full">
           <Link
             href="/"
-            className="flex items-center gap-6 text-sm text-blue-600 text-bold">
+            className="flex items-center gap-6 text-sm text-green-600 text-bold">
 
             <svg
               width="15"
@@ -51,8 +51,8 @@ const Home: NextPage = () => {
               ></path>
             </svg>WellVerse.ai!
           </Link>
-          <div className="flex items-center justify-center gap-2 text-sm text-blue-600 text-bold">
-            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+          <div className="flex items-center justify-center gap-2 text-sm text-green-600 text-bold">
+            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
             <div className="">{Math.round(globalScore)}</div>
           </div>
         </div>
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
                 advices.
               </h4>
               <Link href="/test/depression" passHref legacyBehavior>
-                <div className="p-4 transition-all duration-200 border-2 border-blue-600 rounded-md cursor-pointer hover:bg-blue-600 hover:text-white">
+                <div className="p-4 transition-all duration-200 border-2 border-green-600 rounded-md cursor-pointer hover:bg-green-600 hover:text-white">
                   <h4 className="font-bold">Depression Test</h4>
                   <h5 className="">
                     Take a test with 10 questions regarding symptoms of
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
                 </div>
               </Link>
               <Link href="/test/personality" passHref legacyBehavior>
-                <div className="p-4 transition-all duration-200 border-2 border-blue-600 rounded-md cursor-pointer hover:bg-blue-600 hover:text-white">
+                <div className="p-4 transition-all duration-200 border-2 border-green-600 rounded-md cursor-pointer hover:bg-green-600 hover:text-white">
                   <h4 className="font-bold">Personality Test</h4>
                   <h5 className="">
                     Take a test with 30 questions regarding your personal
@@ -87,7 +87,7 @@ const Home: NextPage = () => {
               </Link>
               {/* <div className="grid w-full grid-cols-2 gap-5">
                 <Link href="/test/depression">
-                  <a className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none">
+                  <a className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none">
                     <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="relative z-20 flex items-center text-base">
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
                   </a>
                 </Link>
                 <Link href="/test/personality">
-                  <a className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none">
+                  <a className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none">
                     <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="relative z-20 flex items-center text-base">
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
       <footer className="flex items-center justify-center w-full h-24 mt-20 border-t">
         <div className="flex items-center justify-center gap-2">
           Powered by{" "}
-          <h4 className="font-bold text-blue-600"><a href='/'>@dods</a></h4>
+          <h4 className="font-bold text-green-600"><a href='/'>@dods</a></h4>
         </div>
       </footer>
     </div>

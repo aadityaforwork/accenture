@@ -39,7 +39,7 @@ def add_journal_entry():
         title = data.get('title', f"Entry {mongo.db.journal.count_documents({}) + 1}")
 
         depression_score = analyze_journal_entry(text)
-        print(f"Depression score: {depression_score}")
+
 
         journal_entry = {
             'date': date,
@@ -50,13 +50,11 @@ def add_journal_entry():
 
         result = mongo.db.journal.insert_one(journal_entry)
         inserted_id = str(result.inserted_id)
-        print(f"Inserted ID: {inserted_id}")
 
         if float(depression_score) > 7:
             print("Depression score exceeds threshold. Initiating check-up call.")
             check_up_call()
 
-        # Create a new dictionary with the string ID for the response
         response_entry = journal_entry.copy()
         response_entry['_id'] = inserted_id
 
@@ -100,7 +98,6 @@ def get_journal_entries():
         return jsonify({'error': 'Failed to fetch journal entries'}), 500
 
 def analyze_journal_entry(text):
-    print(f"Analyzing journal entry: {text}")
     try:
         chat_session = model.start_chat(
             history=[
@@ -123,10 +120,9 @@ Journal Entry:
         
         response = chat_session.send_message("Please provide the depression score. Return a score only")
         response_text = response._result.candidates[0].content.parts[0].text.strip()
-        print(f"Response from Gemini: {response_text}")
+
         
         score = int(response_text)
-        print(f"Parsed score: {score}")
         return score
     
     except ValueError as e:

@@ -39,7 +39,7 @@ def roadmap_quiz():
         roadmap = generate_roadmap(problem, interests)
         if roadmap is None:
             return jsonify({'error': 'Failed to generate roadmap'}), 500
-
+            
         # Add roadmap to the entry
         roadmap_entry['steps'] = roadmap
 

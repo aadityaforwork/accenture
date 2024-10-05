@@ -1,3 +1,4 @@
+import RoadmapComponent from 'components/RoadmapComponent'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -21,8 +22,7 @@ const Roadmap: React.FC = () => {
           const data = await response.json()
 
           if (response.ok) {
-            // Fix: Assuming steps is an array of arrays, we need to access the first array
-            setRoadmap(data.steps[0] || []) // Access the first array in steps
+            setRoadmap(data.steps[0] || [])
           } else {
             console.error('Failed to fetch roadmap:', data)
           }
@@ -55,17 +55,20 @@ const Roadmap: React.FC = () => {
   }
 
   return (
+    <>
+    <RoadmapComponent/>
     <div className="max-w-3xl mx-auto p-4">
       <h1 className="text-2xl font-bold mb-6">Your Personalized 10-Step Roadmap</h1>
       <ol className="space-y-4 list-decimal list-inside">
         {roadmap.map((step, index) => (
-          <li key={index} className="p-4 border border-gray-300 rounded-md">
+          <li key={index} className="p-4 border border-green-600 rounded-md">
             <h2 className="text-xl font-semibold">{`Step ${step.step}: ${step.topic}`}</h2>
             <p className="mt-2">{step.related_content}</p>
           </li>
         ))}
       </ol>
     </div>
+    </>
   )
 }
 

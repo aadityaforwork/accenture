@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
       // Fetch roadmap from Flask backend
-      const response = await fetch(`http://localhost:5000/roadmap/${roadmap_id}`, {
+      const response = await fetch(`https://accenture-6j0l.onrender.com/roadmap/${roadmap_id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       })

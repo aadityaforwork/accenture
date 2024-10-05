@@ -1,6 +1,4 @@
-// content.js
 
-// Function to create the install prompt
 function createInstallPrompt() {
     const installPrompt = document.createElement('div');
     installPrompt.style.position = 'fixed';

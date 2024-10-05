@@ -2,3 +2,6 @@ Flask
 flask-cors
 python-dotenv
 google-generativeai
+pymongo
+flask-pymongo
+gunicorn

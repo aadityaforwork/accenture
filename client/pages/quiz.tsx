@@ -23,7 +23,7 @@ const Quiz: React.FC = () => {
     setLoading(true)
 
     try {
-      // Send data to backend API
+    
       const response = await fetch('/api/submit-quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -33,7 +33,7 @@ const Quiz: React.FC = () => {
       const data = await response.json()
 
       if (response.ok) {
-        // Redirect to roadmap page with roadmap_id
+       
         router.push({
           pathname: '/roadmap',
           query: { roadmap_id: data.roadmap_id },

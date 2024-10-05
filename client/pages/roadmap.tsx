@@ -21,7 +21,8 @@ const Roadmap: React.FC = () => {
           const data = await response.json()
 
           if (response.ok) {
-            setRoadmap(data.steps)
+            // Fix: Assuming steps is an array of arrays, we need to access the first array
+            setRoadmap(data.steps[0] || []) // Access the first array in steps
           } else {
             console.error('Failed to fetch roadmap:', data)
           }

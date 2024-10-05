@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const { problem, interests } = req.body;
   
       try {
-        const response = await axios.post('http://localhost:5000/roadmap', { problem, interests });
+        const response = await axios.post('https://accenture-6j0l.onrender.com/roadmap', { problem, interests });
         // Parse the response data if it's a string
         const cleanedData = JSON.parse(response.data);
         res.status(200).json(cleanedData);

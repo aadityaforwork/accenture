@@ -24,6 +24,6 @@
       "styles/*": ["styles/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "extension/content.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "extension/content.js", "pages/api/journalService.ts"],
   "exclude": ["node_modules"]
 }

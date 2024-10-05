@@ -5,3 +5,4 @@ google-generativeai
 pymongo
 flask-pymongo
 gunicorn
+textblob

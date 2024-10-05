@@ -17,7 +17,8 @@ def create_app():
     app.config["MONGO_URI"] = os.getenv("MONGO_URL")
     mongo.init_app(app)
     CORS(app)  # Enable CORS
-    app.register_blueprint(roadmap.bp)
+    from .routes.main import main_bp
+    app.register_blueprint(main_bp)
     return app
 
 app = create_app()

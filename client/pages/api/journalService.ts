@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       
-      const response = await axios.post('http://localhost:5000/journal_entry', {
+      const response = await axios.post('https://accenture-6j0l.onrender.com/journal_entry', {
         text,
         title,
         date,

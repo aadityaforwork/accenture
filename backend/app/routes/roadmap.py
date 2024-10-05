@@ -55,7 +55,7 @@ def roadmap_quiz():
         print(f"Error inserting into MongoDB: {e}")
         return jsonify({'error': 'Failed to store roadmap'}), 500
 
-@bp.route('/roadmap/<roadmap_id>', methods=['GET'])
+@bp.route('/<roadmap_id>', methods=['GET'])
 def get_roadmap(roadmap_id):
     from app import mongo  # Add this line
     try:

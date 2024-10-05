@@ -14,7 +14,7 @@ function App() {
       formData.append('access_token', access_token);
       formData.append('user_id', user_id);
 
-      const response = await axios.post('http://localhost:5000/fitbit_data', formData);
+      const response = await axios.post('https://accenture-6j0l.onrender.com/fitbit_data', formData);
       setData(response.data);
       console.log(response.data);
     } catch (error) {

@@ -1,3 +1,5 @@
+# app/__init__.py
+
 from flask import Flask
 from flask_cors import CORS
 import os
@@ -12,8 +14,10 @@ mongo = PyMongo()
 
 def create_app():
     app = Flask(__name__)
-    app.config["MONGO_URI"] = os.getenv("MONGO_URL")  # Update with your MongoDB URI
+    app.config["MONGO_URI"] = os.getenv("MONGO_URL")
     mongo.init_app(app)
     CORS(app)  # Enable CORS
     app.register_blueprint(roadmap.bp)
     return app
+
+app = create_app()

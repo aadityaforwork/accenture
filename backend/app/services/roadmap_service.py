@@ -65,4 +65,5 @@ def generate_roadmap(problem, interests):
         json_data = json.loads(formatted_response)
         return json_data
     except json.JSONDecodeError as e:
-        return f"Error decoding JSON: {e}"
+        print(f"Error decoding JSON: {e}")  # Log the error
+        return None

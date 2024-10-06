@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
      
-      const response = await fetch('http://localhost:5000/roadmap/roadmap_quiz', {
+      const response = await fetch('https://accenture-6j0l.onrender.com/roadmap/roadmap_quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

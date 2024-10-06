@@ -3,8 +3,42 @@ from flask import jsonify, request, redirect
 import os
 from datetime import datetime, timedelta
 import google.generativeai as genai
-from google.generativeai.types import HarmCategory, HarmSeverity
+from google.generativeai.types import HarmCategory, HarmBlockThreshold
+
 import json
+
+generation_safety_settings=[
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_HATE_SPEECH",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "threshold": "BLOCK_NONE",
+    },
+    {
+        "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "threshold": "BLOCK_NONE",
+    },]
+# for category in HarmCategory:
+#     print(category)
+    
+#     generation_safety_settings[category] = HarmBlockThreshold.BLOCK_NONE
+
+# generation_safety_settings = {
+#     HarmCategory[0]: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_MEDICAL: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_VIOLENCE: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_DANGEROUS: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,
+#     HarmCategory.HARM_CATEGORY_TOXICITY: HarmBlockThreshold.BLOCK_NONE,
+# }
+
 generation_config = {
     "temperature": 0.5,
     "top_p": 0.95,
@@ -69,23 +103,7 @@ def fetch_fitbit_data(request):
     )
 
     # Since we've provided the prompt in the history, we can send an empty message or proceed directly
-    response_atrisk = chat_session_atrisk.send_message(prompt_atrisk,  safety_settings={
-                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
-                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                
-                                                             
-                                                             
-                                                             
-                                                             })
+    response_atrisk = chat_session_atrisk.send_message(prompt_atrisk,  safety_settings=generation_safety_settings)
 
     # Extract the response text
     response_text_atrisk = response_atrisk._result.candidates[0].content.parts[0].text.strip()
@@ -111,23 +129,7 @@ def fetch_fitbit_data(request):
     )
 
     # # Get the response
-    response_heartrate = chat_session_heartrate.send_message(prompt_heartrate,  safety_settings={
-                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
-                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                
-                                                             
-                                                             
-                                                             
-                                                             })
+    response_heartrate = chat_session_heartrate.send_message(prompt_heartrate,  safety_settings=generation_safety_settings)
 
     # # Extract the response text
     response_heartrate_text = response_heartrate._result.candidates[0].content.parts[0].text.strip()
@@ -148,23 +150,7 @@ def fetch_fitbit_data(request):
 
     # Get the response
     response_steps = model.generate_content(prompt_steps,
-                                            safety_settings={
-                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
-                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
-                                                                
-                                                             
-                                                             
-                                                             
-                                                             }
+                                            safety_settings=generation_safety_settings
                                             
                                             )
 

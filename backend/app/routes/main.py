@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from datetime import datetime
 from ..services import (
     check_up_call,
     fetch_fitbit_data,
@@ -10,7 +9,7 @@ from ..services import (
     get_motivational_quote,
     get_call_records,
 )
-import os
+
 
 main_bp = Blueprint('main', __name__)
 
@@ -38,7 +37,7 @@ def call():
 # Submit Journal Entry
 @main_bp.route('/journal_entry', methods=['POST'])
 def journal_entry():
-    return add_journal_entry(request)
+    return add_journal_entry()
 
 # Get All Journal Entries
 @main_bp.route('/entries', methods=['GET'])

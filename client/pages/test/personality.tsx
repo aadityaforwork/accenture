@@ -98,7 +98,7 @@ const Home: NextPage = ({
         <div className="flex items-center justify-between w-full">
           <Link
             href="/"
-            className="flex items-center gap-6 text-sm text-blue-600 text-bold">
+            className="flex items-center gap-6 text-sm text-green-600 text-bold">
 
             <svg
               width="15"
@@ -116,8 +116,8 @@ const Home: NextPage = ({
               ></path>
             </svg>WellVerse.ai!
           </Link>
-          <div className="flex items-center justify-center gap-2 text-sm text-blue-600 text-bold">
-            <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+          <div className="flex items-center justify-center gap-2 text-sm text-green-600 text-bold">
+            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
             <div className="">{Math.round(globalScore)}</div>
           </div>
         </div>
@@ -138,7 +138,7 @@ const Home: NextPage = ({
                 <h2 className="">Personality Test</h2>
                 <h4>
                   Take a test with total of{" "}
-                  <span className="text-blue-600">{data.length}</span> question
+                  <span className="text-green-600">{data.length}</span> question
                   to identify how severe your depression level is and our AI
                   model will analyze the depression rate and provide advices.
                 </h4>
@@ -148,7 +148,7 @@ const Home: NextPage = ({
                 </h4>
                 <button
                   onClick={() => setCounter(1)}
-                  className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none"
+                  className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none"
                 >
                   <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                   <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
@@ -190,7 +190,7 @@ const Home: NextPage = ({
                           // @ts-ignore
                           Number(response[counter - 1]) === idx
                         }
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500 focus:ring-2"
+                        className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded-md focus:ring-green-500 focus:ring-2"
                       />
                       <label
                         htmlFor={`radio-${idx}`}
@@ -211,7 +211,7 @@ const Home: NextPage = ({
                         JSON.stringify(response)
                       );
                     }}
-                    className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none"
+                    className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none"
                   >
                     <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
@@ -278,7 +278,7 @@ const Home: NextPage = ({
                         }
                       }
                     }}
-                    className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none"
+                    className="box-border relative z-30 inline-flex items-center justify-center w-full px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none"
                   >
                     <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                     <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
@@ -302,7 +302,7 @@ const Home: NextPage = ({
                   <div>
                     <h2 className="">Test Result</h2>
                   </div>
-                  <div className="grid grid-cols-6 border-2 border-blue-600 rounded-md">
+                  <div className="grid grid-cols-6 border-2 border-green-600 rounded-md">
                     <div className="col-span-5 p-4">
                       <h5 className="text-xs">You are more likely to:</h5>
                       <h4 className="font-bold">
@@ -310,7 +310,7 @@ const Home: NextPage = ({
                       </h4>
                     </div>
                     <div
-                      className="flex items-center justify-center font-bold text-white bg-blue-600"
+                      className="flex items-center justify-center font-bold text-white bg-green-600"
                       style={{
                         opacity: pred === 1 ? 0.9 : 0.25,
                       }}
@@ -336,7 +336,7 @@ const Home: NextPage = ({
                   <h5 className="text-xs text-gray-600">
                     Result and advices generated from AI models.{" "}
                     <a
-                      className="font-bold text-blue-600"
+                      className="font-bold text-green-600"
                       href="http://"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -352,7 +352,7 @@ const Home: NextPage = ({
                         // setCounter(0);
                         router.reload();
                       }}
-                      className="box-border relative z-30 inline-flex items-center justify-center w-full col-span-3 px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none"
+                      className="box-border relative z-30 inline-flex items-center justify-center w-full col-span-3 px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none"
                     >
                       <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                       <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
@@ -366,7 +366,7 @@ const Home: NextPage = ({
                         window.sessionStorage.setItem("ptr", "");
                         router.push("/");
                       }}
-                      className="box-border relative z-30 inline-flex items-center justify-center w-full col-span-2 px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-blue-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-blue-300 ring-offset-blue-200 hover:ring-offset-blue-500 ease focus:outline-none"
+                      className="box-border relative z-30 inline-flex items-center justify-center w-full col-span-2 px-10 py-4 overflow-hidden font-bold text-white transition-all duration-300 bg-green-600 rounded-md cursor-pointer active:scale-95 group ring-offset-2 ring-1 ring-green-300 ring-offset-green-200 hover:ring-offset-green-500 ease focus:outline-none"
                     >
                       <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
                       <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
@@ -386,7 +386,7 @@ const Home: NextPage = ({
         <footer className="flex items-center justify-center w-full h-24 mt-20 border-t">
           <div className="flex items-center justify-center gap-2">
             Powered by{" "}
-            <h4 className="font-bold text-blue-600"><a href='/'>@dods</a></h4>
+            <h4 className="font-bold text-green-600"><a href='/'>@dods</a></h4>
           </div>
         </footer>
       )}

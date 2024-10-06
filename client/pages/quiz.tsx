@@ -54,7 +54,10 @@ const Quiz: React.FC = () => {
       <div className="flex-grow flex items-center justify-center px-4 py-12">
         <div className="max-w-4xl w-full bg-white shadow-2xl rounded-lg overflow-hidden">
           <div className="bg-green-600 py-6">
-            <h1 className="text-4xl font-bold text-center text-white">Mental Health Quiz</h1>
+            <h1 className="text-4xl font-bold text-center text-white">Mental Health Roadmap Quiz</h1>
+          </div>
+          <div className="bg-green-200 py-2">
+            <h4 className="text-xl font-bold text-center text-black">These questions will help us curate a detailed roadmap for your well-being!</h4>
           </div>
           <form onSubmit={handleSubmit} className="p-8 space-y-8">
             {/* Question 1 */}

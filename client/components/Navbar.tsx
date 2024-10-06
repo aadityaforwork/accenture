@@ -63,19 +63,16 @@ const Navbar: React.FC = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center justify-end space-x-8 flex-1 ml-16">
           <Link href="/fitbit">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Connect</button>
-          </Link>
-          <Link href="/addJournalEntry">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Add Journal</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Connect Fitbit</button>
           </Link>
           <Link href="/journalEntries">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Journal Entries</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Journal Entries</button>
           </Link>
           <Link href="/quiz">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Roadmap</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Roadmap</button>
           </Link>
           <Link href="/callRecords">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Call Analysis</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Call Analysis</button>
           </Link>
           <div className="flex items-center gap-2 text-sm text-green-600 font-bold">
             <div className="w-2 h-2 bg-green-600 rounded-full"></div>

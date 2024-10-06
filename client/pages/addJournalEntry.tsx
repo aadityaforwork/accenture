@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { Loader2, PenLine, Calendar, Type, AlertCircle, CheckCircle2 } from 'lucide-react';
-import Navbar from 'components/Navbar';
-import RoadmapComponent from 'components/RoadmapComponent';
+import React, { useState, useEffect } from 'react';
+import { Loader2, PenLine, Calendar, Type, AlertCircle, CheckCircle2, Book } from 'lucide-react';
+
+interface JournalEntry {
+  date: string;
+  title: string;
+  text: string;
+  score: number;
+}
 
 const AddJournalEntry: React.FC = () => {
   const [text, setText] = useState('');
@@ -45,8 +50,6 @@ const AddJournalEntry: React.FC = () => {
   };
 
   return (
-    <>
-    <RoadmapComponent/>
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-[2000px] mx-auto">
         <div className="flex items-center justify-between mb-6">
@@ -57,9 +60,11 @@ const AddJournalEntry: React.FC = () => {
         </div>
 
         {(error || success) && (
-          <div className={`mb-6 p-4 rounded-lg flex items-start ${
-            error ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'
-          }`}>
+          <div
+            className={`mb-6 p-4 rounded-lg flex items-start ${
+              error ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'
+            }`}
+          >
             {error ? (
               <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
             ) : (
@@ -69,7 +74,10 @@ const AddJournalEntry: React.FC = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6 bg-white p-6 rounded-lg shadow-sm border border-gray-200"
+        >
           <div>
             <label className=" mb-2 text-sm font-medium text-gray-900 flex items-center">
               <Type className="h-4 w-4 mr-2" />
@@ -116,9 +124,7 @@ const AddJournalEntry: React.FC = () => {
           <button
             type="submit"
             className={`w-full p-3 text-white font-semibold rounded-lg transition-all ${
-              loading 
-                ? 'bg-gray-400 cursor-not-allowed' 
-                : 'bg-green-600 hover:bg-green-700 active:bg-green-800'
+              loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700 active:bg-green-800'
             }`}
             disabled={loading}
           >
@@ -134,8 +140,106 @@ const AddJournalEntry: React.FC = () => {
         </form>
       </div>
     </div>
-    </>
   );
 };
 
-export default AddJournalEntry;
+const JournalEntries: React.FC = () => {
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      try {
+        const response = await fetch('/api/getEntries', {
+          method: 'GET',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch journal entries');
+        }
+
+        const data = await response.json();
+        setEntries(data.entries);
+      } catch (err) {
+        setError('Failed to load journal entries');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEntries();
+  }, []);
+
+  // Sort the top 3 entries by score (lower is better) and by date (closer to today)
+  const sortedEntries = [...entries]
+    .sort((a, b) => a.score - b.score || new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[200px]">
+        <Loader2 className="h-8 w-8 animate-spin text-green-500" />
+        <p className="mt-2 text-gray-600">Loading journal entries...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[200px] text-red-500">
+        <AlertCircle className="h-8 w-8" />
+        <p className="mt-2">{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full flex flex-col lg:flex-row gap-6">
+      {/* Left Column for Top 3 Depression Scores */}
+      {/* <div className="lg:w-3/5 space-y-6">
+        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center">
+          <Book className="h-6 w-6 mr-2 text-green-500" />
+          Top 3 Journal Entries
+        </h2>
+
+        {sortedEntries.length === 0 ? (
+          <div className="text-center py-10 bg-gray-50 rounded-lg">
+            <Book className="h-12 w-12 mx-auto text-gray-400" />
+            <p className="mt-2 text-gray-600">No journal entries available.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {sortedEntries.map((entry, index) => (
+              <div
+                key={index}
+                className="p-4 sm:p-6 border border-green-200 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                  <h3 className="text-xl font-semibold text-gray-900">{entry.title}</h3>
+                  <time className="text-sm text-gray-500 mt-1 sm:mt-0">
+                    {new Date(entry.date).toLocaleDateString()}
+                  </time>
+                </div>
+                <p className="mt-2 text-gray-700 whitespace-pre-wrap">{entry.text}</p>
+                <div className="mt-4 pt-3 border-t border-gray-100">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-50 text-green-700">
+                    Depression Score: {entry.score}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div> */}
+
+      {/* Right Column for Adding New Entry */}
+      <div className="lg:w-full space-y-6">
+        <AddJournalEntry />
+      </div>
+    </div>
+  );
+};
+
+export default JournalEntries;

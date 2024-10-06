@@ -181,7 +181,7 @@ const JournalEntries: React.FC = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[200px]">
         <Loader2 className="h-8 w-8 animate-spin text-green-500" />
-        <p className="mt-2 text-gray-600">Loading journal entries...</p>
+        <p className="mt-2 text-gray-600">Time to jot down your thoughts!</p>
       </div>
     );
   }

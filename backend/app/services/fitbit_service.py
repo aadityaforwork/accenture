@@ -3,6 +3,7 @@ from flask import jsonify, request, redirect
 import os
 from datetime import datetime, timedelta
 import google.generativeai as genai
+from google.generativeai.types import HarmCategory, HarmSeverity
 import json
 generation_config = {
     "temperature": 0.5,
@@ -10,6 +11,7 @@ generation_config = {
     "top_k": 64,
     "max_output_tokens": 8192,
     "response_mime_type": "application/json",
+    
 }
 def fetch_fitbit_data(request):
     access_token = os.getenv('FITBIT_ACCESS_TOKEN')
@@ -50,6 +52,7 @@ def fetch_fitbit_data(request):
     model = genai.GenerativeModel(
         model_name="gemini-1.5-flash",
         generation_config=generation_config,
+        
     )
 
     # Prompt for 'atrisk' assessment
@@ -66,7 +69,23 @@ def fetch_fitbit_data(request):
     )
 
     # Since we've provided the prompt in the history, we can send an empty message or proceed directly
-    response_atrisk = chat_session_atrisk.send_message(prompt_atrisk)
+    response_atrisk = chat_session_atrisk.send_message(prompt_atrisk,  safety_settings={
+                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
+                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                
+                                                             
+                                                             
+                                                             
+                                                             })
 
     # Extract the response text
     response_text_atrisk = response_atrisk._result.candidates[0].content.parts[0].text.strip()
@@ -92,7 +111,23 @@ def fetch_fitbit_data(request):
     )
 
     # # Get the response
-    response_heartrate = chat_session_heartrate.send_message(prompt_heartrate)
+    response_heartrate = chat_session_heartrate.send_message(prompt_heartrate,  safety_settings={
+                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
+                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                
+                                                             
+                                                             
+                                                             
+                                                             })
 
     # # Extract the response text
     response_heartrate_text = response_heartrate._result.candidates[0].content.parts[0].text.strip()
@@ -112,7 +147,26 @@ def fetch_fitbit_data(request):
     )
 
     # Get the response
-    response_steps = chat_session_steps.send_message(prompt_steps)
+    response_steps = model.generate_content(prompt_steps,
+                                            safety_settings={
+                                                             HarmCategory.HARM_CATEGORY_DANGEROUS: HarmSeverity.HARM_SEVERITY_NONE,
+                                                             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_VIOLENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_MEDICAL: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_SUGGESTIVE: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PROFANITY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_THREAT: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_DISCRIMINATION: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                HarmCategory.HARM_CATEGORY_PRIVACY: HarmSeverity.HARM_SEVERITY_NONE,
+                                                                
+                                                             
+                                                             
+                                                             
+                                                             }
+                                            
+                                            )
 
     # # Extract the response text
     response_steps = response_steps._result.candidates[0].content.parts[0].text.strip()

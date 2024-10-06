@@ -19,6 +19,8 @@ def create_app():
     CORS(app)  # Enable CORS
     from .routes.main import main_bp
     app.register_blueprint(main_bp)
+    from .routes.roadmap import bp as roadmap_bp
+    app.register_blueprint(roadmap_bp)
     return app
 
 app = create_app()

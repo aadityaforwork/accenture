@@ -66,13 +66,16 @@ const Navbar: React.FC = () => {
             <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Connect</button>
           </Link>
           <Link href="/addJournalEntry">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Joural your Thoughts</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Add Journal</button>
           </Link>
           <Link href="/journalEntries">
             <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Journal Entries</button>
           </Link>
           <Link href="/quiz">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Get your own roadmap!</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Roadmap</button>
+          </Link>
+          <Link href="/callRecords">
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Call Analysis</button>
           </Link>
           <div className="flex items-center gap-2 text-sm text-green-600 font-bold">
             <div className="w-2 h-2 bg-green-600 rounded-full"></div>
@@ -94,7 +97,10 @@ const Navbar: React.FC = () => {
             <button className="text-green-600 text-xl">Journal Entries</button>
           </Link>
           <Link href="/quiz">
-            <button className="text-green-600 text-xl">Quiz</button>
+            <button className="text-green-600 text-xl">Roadmap</button>
+          </Link>
+          <Link href="/callRecords">
+            <button className="text-green-600 text-xl">Call Analysis</button>
           </Link>
         </div>
       )}

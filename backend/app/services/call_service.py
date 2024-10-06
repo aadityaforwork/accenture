@@ -72,7 +72,7 @@ def fetch_call_recording(call_id, authorization_token):
 def analyze_sentiment(text):
     analysis = TextBlob(text)
     sentiment = {
-        "polarity": analysis.sentiment.polarity,       # Range: [-1.0, 1.0]
-        "subjectivity": analysis.sentiment.subjectivity  # Range: [0.0, 1.0]
+        "polarity": analysis.sentiment.polarity,       
+        "subjectivity": analysis.sentiment.subjectivity  
     }
     return sentiment

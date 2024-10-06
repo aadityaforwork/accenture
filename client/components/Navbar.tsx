@@ -8,7 +8,7 @@ import { BertTokenizer } from "lib/bert_tokenizer";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar: React.FC = () => {
-  const [globalScore, setGlobalScore] = useState(0);
+  const [globalScore, setGlobalScore] = useState(40);
   const [mounted, setMounted] = useState<boolean>(false);
   const { resolvedTheme, setTheme } = useTheme();
   const [tokenizer, setTokenizer] = useState<BertTokenizer>();
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <p className="text-xl">WellVerse.ai!</p>
+          <p className="text-2xl">WellVerse.ai</p>
         </Link>
 
         {/* Mobile Menu Toggle */}
@@ -74,6 +74,9 @@ const Navbar: React.FC = () => {
           <Link href="/callRecords">
             <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Call Analysis</button>
           </Link>
+          <Link href="/test">
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Mood Analyzer</button>
+          </Link>
           <div className="flex items-center gap-2 text-sm text-green-600 font-bold">
             <div className="w-2 h-2 bg-green-600 rounded-full"></div>
             <div>{Math.round(globalScore)}</div>
@@ -87,9 +90,6 @@ const Navbar: React.FC = () => {
           <Link href="/fitbit">
             <button className="text-green-600 text-xl">Connect</button>
           </Link>
-          <Link href="/addJournalEntry">
-            <button className="text-green-600 text-xl">Add Journal Entry</button>
-          </Link>
           <Link href="/journalEntries">
             <button className="text-green-600 text-xl">Journal Entries</button>
           </Link>
@@ -98,6 +98,9 @@ const Navbar: React.FC = () => {
           </Link>
           <Link href="/callRecords">
             <button className="text-green-600 text-xl">Call Analysis</button>
+          </Link>
+          <Link href="/test">
+            <button className="text-green-600 text-xl">Mood Analyzer</button>
           </Link>
         </div>
       )}

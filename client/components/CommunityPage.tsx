@@ -36,7 +36,7 @@ const CommunityPage: React.FC = () => {
 
   return (
     <div className=' grid grid-rows-2'>
-    <div className="container mx-20 my-8 text-blue-600">
+    <div className="container mx-20 my-8 text-green-600">
       <h1 className="text-4xl font-bold mb-4">Community Forum</h1>
 
       {/* New Post Form */}
@@ -57,7 +57,7 @@ const CommunityPage: React.FC = () => {
             onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
           />
           <button
-            className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+            className="bg-green-500 text-white py-2 rounded hover:bg-green-600 transition"
             onClick={handlePostSubmit}
           >
             Submit Post

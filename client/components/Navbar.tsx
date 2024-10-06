@@ -66,13 +66,13 @@ const Navbar: React.FC = () => {
             <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Connect</button>
           </Link>
           <Link href="/addJournalEntry">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Add Journal Entry</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Joural your Thoughts</button>
           </Link>
           <Link href="/journalEntries">
             <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Journal Entries</button>
           </Link>
           <Link href="/quiz">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Quiz</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Get your own roadmap!</button>
           </Link>
           <div className="flex items-center gap-2 text-sm text-green-600 font-bold">
             <div className="w-2 h-2 bg-green-600 rounded-full"></div>

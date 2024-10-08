@@ -8,7 +8,7 @@ import { BertTokenizer } from "lib/bert_tokenizer";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar: React.FC = () => {
-  const [globalScore, setGlobalScore] = useState(0);
+  const [globalScore, setGlobalScore] = useState(40);
   const [mounted, setMounted] = useState<boolean>(false);
   const { resolvedTheme, setTheme } = useTheme();
   const [tokenizer, setTokenizer] = useState<BertTokenizer>();
@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <p className="text-xl">WellVerse.ai!</p>
+          <p className="text-2xl">WellVerse.ai</p>
         </Link>
 
         {/* Mobile Menu Toggle */}
@@ -63,19 +63,19 @@ const Navbar: React.FC = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center justify-end space-x-8 flex-1 ml-16">
           <Link href="/fitbit">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Connect</button>
-          </Link>
-          <Link href="/addJournalEntry">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Add Journal</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Connect Fitbit</button>
           </Link>
           <Link href="/journalEntries">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Journal Entries</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Journal Entries</button>
           </Link>
           <Link href="/quiz">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Roadmap</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Roadmap</button>
           </Link>
           <Link href="/callRecords">
-            <button className="text-green-600 text-lg hover:text-green-700 transition-colors">Call Analysis</button>
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Call Analysis</button>
+          </Link>
+          <Link href="/test">
+            <button className="text-green-600 text-lg hover:text-green-700 transition-colors underline-offset-2 hover:underline">Mood Analyzer</button>
           </Link>
           <div className="flex items-center gap-2 text-sm text-green-600 font-bold">
             <div className="w-2 h-2 bg-green-600 rounded-full"></div>
@@ -90,9 +90,6 @@ const Navbar: React.FC = () => {
           <Link href="/fitbit">
             <button className="text-green-600 text-xl">Connect</button>
           </Link>
-          <Link href="/addJournalEntry">
-            <button className="text-green-600 text-xl">Add Journal Entry</button>
-          </Link>
           <Link href="/journalEntries">
             <button className="text-green-600 text-xl">Journal Entries</button>
           </Link>
@@ -101,6 +98,9 @@ const Navbar: React.FC = () => {
           </Link>
           <Link href="/callRecords">
             <button className="text-green-600 text-xl">Call Analysis</button>
+          </Link>
+          <Link href="/test">
+            <button className="text-green-600 text-xl">Mood Analyzer</button>
           </Link>
         </div>
       )}

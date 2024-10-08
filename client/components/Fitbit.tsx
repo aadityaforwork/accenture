@@ -3,7 +3,6 @@ import axios from 'axios';
 import Navbar from './Navbar';
 import MasonryGridGallery from './Gallery';
 
-
 interface FitbitData {
   peak_heart_rate: number; 
   heart_text: string;
@@ -45,12 +44,12 @@ const Fitbit = () => {
 
   // Separate component for displaying Fitbit instructions
   const FitbitInstructions = () => (
-    <div className="p-7 rounded-lg shadow-lg bg-white mt-10 border border-r-2">
-      <h1 className="text-xl font-bold text-green-600">Connect to Fitbit</h1>
+    <div className="p-4 sm:p-7 rounded-lg shadow-lg  bg-white mt-6 sm:mt-10 border border-r-2">
+      <h1 className="text-sm sm:text-xl font-bold   text-green-400">Connect to Fitbit</h1>
       <p className="text-green-600 mt-3">
         To connect your Fitbit device to our website and access your data, follow these steps:
       </p>
-      <ol className="list-decimal text-green-600 mt-3">
+      <ol className="pl-2 list-decimal text-green-400 mt-3">
         <li>Ensure you have your Fitbit device nearby and turned on.</li>
         <li>Click the "Connect to Watch" button above.</li>
         <li>You'll be redirected to Fitbit's authorization page.</li>
@@ -78,18 +77,18 @@ const Fitbit = () => {
     <>
       <Navbar />
       <div className="bg-white h-full pb-10">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-20">
           <div>
-            <div className="max-w-xl mx-20 p-5 rounded-lg shadow-lg bg-white mt-10 border border-r-2">
-              <h1 className="text-xl font-bold text-green-600">Fitbit Data</h1>
+            <div className="p-5 sm:p-7 rounded-lg shadow-lg bg-white mt-6 sm:mt-10 border border-r-2">
+              <h1 className="text-lg sm:text-xl font-bold text-green-600">Fitbit Data</h1>
               <button
                 onClick={fetchData}
-                className="mt-5 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-200"
+                className="mt-4 sm:mt-5 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-200"
                 disabled={isLoading} // Disable the button when loading
               >
-                Connect to Watch
+                {isLoading ? 'Loading...' : 'Connect to Watch'}
               </button>
-              
+
               {isLoading ? (
                 <p className="my-4">Loading the reality...</p> 
               ) : (

@@ -8,6 +8,7 @@ from ..services import (
     analyze_call_data,
     get_motivational_quote,
     get_call_records,
+    fitbit_callback
 )
 
 
@@ -63,3 +64,7 @@ def call_records():
 @main_bp.route('/analyze_call', methods=['POST'])
 def analyze_call():
     return analyze_call_data(request)
+
+@main_bp.route('/callback', methods=['GET'])
+def handle_callback():
+    return fitbit_callback(request)
